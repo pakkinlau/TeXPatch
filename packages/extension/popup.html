@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>TeXPatch</title>
+    <style>body{font-family:sans-serif;margin:12px} textarea{width:320px;height:120px} pre{white-space:pre-wrap;border:1px solid #ccc;padding:8px}</style>
+  </head>
+  <body>
+    <h3>TeXPatch</h3>
+    <div style="margin-bottom:8px">
+      <button id="btnConvert">Convert selection → clipboard</button>
+      <label style="margin-left:8px">Profile:
+        <select id="selProfile">
+          <option value="katex">katex</option>
+          <option value="pandoc">pandoc</option>
+          <option value="github">github</option>
+        </select>
+      </label>
+      <label style="margin-left:8px"><input type="checkbox" id="chkAuto" checked> Auto‑convert on copy</label>
+      <span id="status" style="margin-left:8px;color:#555"></span>
+    </div>
+    <details>
+      <summary>Manual preview (optional)</summary>
+      <textarea id="in" placeholder="Paste text to preview…"></textarea>
+      <pre id="out"></pre>
+    </details>
+    <script type="module">
+      import { initPopup } from './dist/popup.js';
+      initPopup();
+    </script>
+  </body>
+  </html>

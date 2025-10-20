@@ -1,0 +1,19 @@
+# Normalize line endings in the repo
+* text=auto
+
+# Always use LF for source/text files
+*.ts text eol=lf
+*.tsx text eol=lf
+*.js text eol=lf
+*.mjs text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.sh text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+
+# Windows batch files may keep CRLF
+*.bat text eol=crlf
+

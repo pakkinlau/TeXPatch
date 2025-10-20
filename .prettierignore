@@ -1,0 +1,11 @@
+# dependencies and build outputs
+node_modules/
+packages/*/dist/
+TeXPatch-core/
+
+# test fixtures (goldens should not be auto-formatted)
+tests/golden/
+
+# Python reference and generated artifacts
+.tools/
+

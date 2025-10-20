@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": ".",
+    "declaration": true,
+    "declarationMap": false,
+    "sourceMap": false,
+    "types": ["node"],
+    "lib": ["ES2020"]
+  },
+  "include": ["src", "scripts", "bin"],
+  "exclude": ["node_modules", "dist"]
+}
+

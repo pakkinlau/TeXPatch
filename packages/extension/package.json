@@ -1,0 +1,19 @@
+{
+  "name": "texpatch-extension",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "dependencies": {
+    "texpatch-core": "^0.1.1"
+  },
+  "devDependencies": {
+    "typescript": "5.4.5",
+    "esbuild": "0.23.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

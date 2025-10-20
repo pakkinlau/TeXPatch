@@ -1,0 +1,51 @@
+{
+  "name": "texpatch-core",
+  "version": "0.1.1",
+  "private": false,
+  "type": "module",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "exports": {
+    ".": "./dist/src/index.js"
+  },
+  "bin": {
+    "texpatch": "./dist/bin/texpatch.js"
+  },
+  "files": [
+    "dist/src",
+    "dist/bin",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OWNER/REPO.git"
+  },
+  "keywords": [
+    "markdown",
+    "katex",
+    "mathjax",
+    "latex",
+    "normalizer"
+  ],
+  "author": "TeXPatch contributors",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "rm -rf dist",
+    "golden": "npm run build && node dist/scripts/goldens.js",
+    "idempotence": "npm run build && node dist/scripts/idempotence.js",
+    "profiles": "npm run build && node dist/scripts/profiles.test.js"
+  },
+  "devDependencies": {
+    "@types/node": "^24.8.1",
+    "typescript": "5.4.5"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
+

@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "TeXPatch",
+  "version": "0.0.0",
+  "description": "Patch TeX quirks in page selections (uses texpatch-core).",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "TeXPatch"
+  },
+  "permissions": ["activeTab", "scripting", "storage", "clipboardWrite"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["dist/content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

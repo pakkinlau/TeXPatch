@@ -1,0 +1,31 @@
+TeXPatch — Patch TeX quirks in Markdown
+
+Overview
+TeXPatch fixes small TeX quirks in LLM‑generated Markdown so math renders cleanly in KaTeX/MathJax. It converts only the snippet you select — no full‑document rewrites, no network calls.
+
+How it works
+- Select any text on a page
+- Open the TeXPatch popup
+- Click “Convert selection → clipboard”
+- Optional: enable “Replace in editable” to replace text inside inputs/textareas/contentEditable
+
+Profiles
+- katex (default), pandoc, github — choose in the popup; preference is saved.
+
+Privacy
+- 100% local. The extension reads your current selection only when you click its button. No analytics. No network requests. Your profile preference is stored in chrome.storage.sync.
+
+Permissions
+- activeTab: act on the current tab when you click the button
+- scripting: run short, page‑scoped functions to read/replace selection
+- storage: save your profile preference
+- clipboardWrite: reliably copy converted text to the clipboard
+
+Why TeXPatch
+- Idempotent and deterministic transforms
+- Avoids code fences/inline code/links
+- Works with KaTeX/MathJax conventions
+
+Support
+Open an issue on the project’s GitHub repository.
+

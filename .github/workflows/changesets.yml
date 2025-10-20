@@ -1,0 +1,32 @@
+name: Changesets
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: '**/package-lock.json'
+
+      - name: Install workspaces
+        run: npm i
+
+      - name: Create Release PR (changesets)
+        uses: changesets/action@v1
+        with:
+          version: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
