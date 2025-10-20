@@ -12,6 +12,7 @@ async function main() {
     entryPoints: {
       popup: 'src/popup.ts',
       content: 'src/content.ts',
+      background: 'src/background.ts',
     },
     outdir: 'dist',
     bundle: true,

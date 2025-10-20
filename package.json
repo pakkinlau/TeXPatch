@@ -11,6 +11,7 @@
     "build:core": "npm -w texpatch-core run build",
     "build:ext": "npm -w texpatch-extension run build",
     "release:core": "npm -w texpatch-core publish --access public",
+    "clip": "node packages/clip/bin/texpatch-clip.mjs",
     "format": "prettier -w .",
     "format:check": "prettier -c .",
     "typecheck": "npm -w texpatch-core run build --silent && npm -w texpatch-extension run build --silent"

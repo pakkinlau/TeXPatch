@@ -12,10 +12,20 @@ export type ProfileConfig = RuleConfig & {
   fenceMathAsCode?: boolean;
 };
 
-export type ProfileName = 'katex' | 'pandoc' | 'github';
+export type ProfileName = 'katex' | 'mathjax' | 'pandoc' | 'github';
 
 export const profiles: Record<ProfileName, ProfileConfig> = {
   katex: {
+    R1_underscoreInText: true,
+    R2_setGlyphBraces: true,
+    R3_indicatorBraces: true,
+    R4_starForms: true,
+    R5_bigDelimiters: true,
+    R6_rightDelimiterFixes: true,
+    R7_splitSuffixMerge: true,
+  },
+  // Alias: mathjax uses the same normalization as katex in our pipeline
+  mathjax: {
     R1_underscoreInText: true,
     R2_setGlyphBraces: true,
     R3_indicatorBraces: true,
@@ -44,4 +54,3 @@ export const profiles: Record<ProfileName, ProfileConfig> = {
     fenceMathAsCode: true,
   },
 };
-

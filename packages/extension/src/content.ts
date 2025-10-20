@@ -1,12 +1,10 @@
 import { convert, profiles } from 'texpatch-core';
 
 let currentProfile: keyof typeof profiles = 'katex';
-let auto = true;
 
 function loadSettings() {
-  chrome.storage.sync.get({ profile: 'katex', auto: true }, (res) => {
+  chrome.storage.sync.get({ profile: 'katex' }, (res) => {
     currentProfile = (res.profile || 'katex') as keyof typeof profiles;
-    auto = Boolean(res.auto);
   });
 }
 
@@ -14,7 +12,6 @@ loadSettings();
 chrome.storage.onChanged.addListener((changes, area) => {
   if (area !== 'sync') return;
   if (changes.profile) currentProfile = (changes.profile.newValue || 'katex') as keyof typeof profiles;
-  if (changes.auto) auto = Boolean(changes.auto.newValue);
 });
 
 function getSelectedText(): string {
@@ -28,19 +25,71 @@ function getSelectedText(): string {
   return window.getSelection()?.toString() || '';
 }
 
-document.addEventListener('copy', (e) => {
-  try {
-    if (!auto) return;
-    const text = getSelectedText();
-    if (!text) return;
-    const out = convert(text, { profile: currentProfile });
-    if (!e.clipboardData) return;
-    e.clipboardData.setData('text/plain', out);
-    // Optional: also set HTML to the same plain text to avoid mismatches
-    e.clipboardData.setData('text/html', out.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'));
-    e.preventDefault();
-  } catch {
-    // Swallow errors to avoid breaking native copy behavior
-  }
-}, true);
+// Removed auto-convert-on-copy to avoid unexpected behavior on sites with custom copy buttons.
 
+// Handle context-menu and keyboard command to copy converted
+chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
+  if (msg && msg.type === 'COPY_CONVERTED') {
+    try {
+      const text = getSelectedText();
+      if (!text) return;
+      const out = convert(text, { profile: currentProfile });
+      doWriteClipboard(out, `<pre style="white-space:pre-wrap;">${escapeHtml(out)}</pre>`).then(
+        () => sendResponse({ ok: true }),
+        () => sendResponse({ ok: false })
+      );
+    } catch {
+      sendResponse({ ok: false });
+    }
+    return true; // async
+  }
+  if (msg && msg.type === 'WRITE_CLIPBOARD') {
+    const text = String(msg.text || '');
+    const html = typeof msg.html === 'string' ? msg.html : `<pre style="white-space:pre-wrap;">${escapeHtml(text)}</pre>`;
+    doWriteClipboard(text, html).then(
+      () => sendResponse({ ok: true }),
+      () => sendResponse({ ok: false })
+    );
+    return true;
+  }
+});
+
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/\"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+async function doWriteClipboard(text: string, html: string): Promise<void> {
+  try {
+    const item = new ClipboardItem({
+      'text/plain': new Blob([text], { type: 'text/plain' }),
+      'text/html': new Blob([html], { type: 'text/html' }),
+    });
+    await navigator.clipboard.write([item]);
+    return;
+  } catch {
+    // Try execCommand with a contentEditable div to set both HTML and plain text
+    try {
+      const div = document.createElement('div');
+      div.contentEditable = 'true';
+      div.style.position = 'fixed';
+      div.style.left = '-9999px';
+      div.innerHTML = html;
+      document.body.appendChild(div);
+      const range = document.createRange();
+      range.selectNodeContents(div);
+      const sel = window.getSelection();
+      sel?.removeAllRanges();
+      sel?.addRange(range);
+      if (!document.execCommand('copy')) throw new Error('execCommand copy failed');
+      div.remove();
+      return;
+    } catch (e) {
+      throw e;
+    }
+  }
+}

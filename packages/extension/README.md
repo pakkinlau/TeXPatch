@@ -14,8 +14,10 @@ Load Unpacked
 - Load unpacked → select `packages/extension`
 
 Usage
-- Mode 1 (manual): Select any text on a page → open the popup → click “Convert selection → clipboard”.
-- Mode 2 (auto, default): Leave “Auto‑convert on copy” checked → Press Ctrl/Cmd+C anywhere → the clipboard receives the converted text automatically.
+- Convert clipboard (one-click): Open the popup → click “Convert clipboard”.
+- Select text on a page, then use:
+  - Context menu: right‑click → “Copy converted”, or
+  - Keyboard: Alt+Shift+C
 - Choose a profile (katex/pandoc/github); it persists across sessions.
 
 Permissions & Privacy

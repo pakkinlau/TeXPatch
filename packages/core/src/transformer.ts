@@ -1,6 +1,7 @@
 import { stashByRegex, stashCodeAndLinks } from './util/stash.js';
 import { normalizeMath, normalizeLooseOutsideMath } from './normalize.js';
 import { profiles, type ProfileConfig, type ProfileName } from './rules/profiles.js';
+export type SourceName = 'openai' | 'generic';
 
 function replaceBoldInsideText(body: string): string {
   let b = body;
@@ -215,7 +216,7 @@ export function mergeSplitSuffixes(text: string): string {
   return t;
 }
 
-export type ConvertOptions = { profile?: ProfileName };
+export type ConvertOptions = { profile?: ProfileName; source?: SourceName };
 
 function fenceMathAsCode(text: string): string {
   // $$ ... $$ => ```latex ... ``` ; leave inline $...$ unchanged
@@ -263,4 +264,3 @@ export function convert(src: string, opts: ConvertOptions = {}): string {
   txt = restoreCode(txt);
   return txt;
 }
-

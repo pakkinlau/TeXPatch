@@ -3,13 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "bin": {
-    "texpatch-clip": "bin/texpatch-clip.mjs"
-  },
   "dependencies": {
     "clipboardy": "^3.0.0",
     "texpatch-core": "^0.1.1"
   },
   "engines": { "node": ">=20" }
 }
-

@@ -30,11 +30,11 @@ async function main() {
   if (args.help) {
     output.write(
       [
-        'Usage: texpatch [--profile katex|pandoc|github] [--strip-final-newline] < in.md > out.md',
+        'Usage: texpatch [--profile katex|mathjax|pandoc|github] [--strip-final-newline] < in.md > out.md',
         '',
         'Reads Markdown from stdin and writes normalized Markdown to stdout.',
         'Profiles:',
-        '  - katex (default): full pipeline (R1–R7)',
+        '  - katex/mathjax (default): full pipeline (R1–R7)',
         '  - pandoc: R1, R2, R5, R6',
         '  - github: fence display math as code + R1',
         '',

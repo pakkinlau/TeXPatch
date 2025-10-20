@@ -3,11 +3,22 @@
   "name": "TeXPatch",
   "version": "0.0.0",
   "description": "Patch TeX quirks in page selections (uses texpatch-core).",
+  "background": {
+    "service_worker": "dist/background.js"
+  },
   "action": {
     "default_popup": "popup.html",
     "default_title": "TeXPatch"
   },
-  "permissions": ["activeTab", "scripting", "storage", "clipboardWrite"],
+  "permissions": ["activeTab", "scripting", "storage", "clipboardRead", "clipboardWrite", "contextMenus"],
+  "commands": {
+    "copy-converted": {
+      "suggested_key": {
+        "default": "Alt+Shift+C"
+      },
+      "description": "Copy converted selection to clipboard"
+    }
+  },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],

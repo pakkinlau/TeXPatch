@@ -8,25 +8,35 @@
   <body>
     <h3>TeXPatch</h3>
     <div style="margin-bottom:8px">
-      <button id="btnConvert">Convert selection → clipboard</button>
-      <label style="margin-left:8px">Profile:
-        <select id="selProfile">
-          <option value="katex">katex</option>
-          <option value="pandoc">pandoc</option>
-          <option value="github">github</option>
-        </select>
-      </label>
-      <label style="margin-left:8px"><input type="checkbox" id="chkAuto" checked> Auto‑convert on copy</label>
+      <button id="btnClipboard">Convert clipboard</button>
       <span id="status" style="margin-left:8px;color:#555"></span>
     </div>
-    <details>
+    <div style="margin-bottom:8px"><strong>Format</strong></div>
+    <div style="margin-bottom:8px">
+      <label>From:
+        <select id="selFrom">
+          <option value="openai">ChatGPT / OpenAI</option>
+          <option value="claude">Claude</option>
+          <option value="gemini">Gemini</option>
+          <option value="generic">Generic</option>
+        </select>
+      </label>
+    </div>
+    <div style="margin-bottom:8px">
+      <label>To:
+        <select id="selTo">
+          <option value="obsidian">Obsidian (MathJax)</option>
+          <option value="quarto-html">Quarto HTML (MathJax)</option>
+          <option value="quarto-pdf">Quarto/Pandoc PDF (LaTeX)</option>
+          <option value="github">GitHub (fence $$ as code)</option>
+        </select>
+      </label>
+    </div>
+    <details open>
       <summary>Manual preview (optional)</summary>
       <textarea id="in" placeholder="Paste text to preview…"></textarea>
       <pre id="out"></pre>
     </details>
-    <script type="module">
-      import { initPopup } from './dist/popup.js';
-      initPopup();
-    </script>
+    <script type="module" src="dist/popup.js"></script>
   </body>
   </html>
