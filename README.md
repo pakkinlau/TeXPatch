@@ -43,6 +43,8 @@ Chrome Extension (MV3)
   - Manual preview (optional): open by default; paste to see live output.
 - Permissions: `activeTab`, `scripting`, `storage`, `clipboardWrite`. See `PRIVACY.md`.
 - Packaging (zip artifact): `bash scripts/pack-extension.sh` (uses core version or `EXT_VERSION` env).
+ - Icons: place PNGs under `packages/extension/assets/icons/`. This repo includes a default icon wired via the manifest; you can replace
+   `icon-16.png`, `icon-48.png`, `icon-128.png`, `icon-512.png` with your own.
 
 TypeScript API (ESM)
 ```ts
