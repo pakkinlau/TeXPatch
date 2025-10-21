@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use TeXPatch, please cite it as below."
+title: "TeXPatch"
+version: "0.1.1"
+authors:
+  - family-names: "Lau"
+    given-names: "Pak Kin"
+date-released: "2025-10-21"
+repository-code: "https://github.com/pakkinlau/TeXPatch"
+license: MIT

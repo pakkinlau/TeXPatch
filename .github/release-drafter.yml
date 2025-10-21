@@ -1,0 +1,23 @@
+name-template: "TeXPatch v$RESOLVED_VERSION"
+tag-template: "v$RESOLVED_VERSION"
+categories:
+  - title: "🚀 Features"
+    labels: ["feat", "feature"]
+  - title: "🐛 Fixes"
+    labels: ["fix", "bug"]
+  - title: "🧹 Chores"
+    labels: ["chore", "refactor"]
+  - title: "📝 Docs"
+    labels: ["docs"]
+change-template: "- $TITLE (#$NUMBER) by @$AUTHOR"
+template: |
+  ## Changes
+  $CHANGES
+version-resolver:
+  major:
+    labels: [ "breaking" ]
+  minor:
+    labels: [ "feat", "feature" ]
+  patch:
+    labels: [ "fix", "bug" ]
+  default: patch

@@ -22,14 +22,23 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/OWNER/REPO.git"
+    "url": "https://github.com/pakkinlau/TeXPatch.git"
   },
+  "homepage": "https://github.com/pakkinlau/TeXPatch",
   "keywords": [
     "markdown",
     "katex",
     "mathjax",
     "latex",
-    "normalizer"
+    "normalizer",
+    "obsidian",
+    "quarto",
+    "pandoc",
+    "clipboard",
+    "chrome-extension",
+    "chatgpt",
+    "llm",
+    "tex"
   ],
   "author": "TeXPatch contributors",
   "license": "MIT",
@@ -48,4 +57,3 @@
     "node": ">=20"
   }
 }
-

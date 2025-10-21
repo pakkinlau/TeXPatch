@@ -6,6 +6,19 @@
   "scripts": {
     "build": "node build.mjs"
   },
+  "keywords": [
+    "chrome-extension",
+    "katex",
+    "mathjax",
+    "obsidian",
+    "quarto",
+    "pandoc",
+    "clipboard",
+    "llm",
+    "chatgpt",
+    "markdown",
+    "latex"
+  ],
   "dependencies": {
     "texpatch-core": "^0.1.1"
   },

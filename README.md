@@ -1,10 +1,15 @@
-TeXPatch — Patch TeX quirks in Markdown (Monorepo)
+# TeXPatch — TeX/LaTeX fixes for Markdown (KaTeX/MathJax)
 
-[![CI](https://github.com/OWNER/REPO/actions/workflows/ci.yml/badge.svg)](#)
+> A TypeScript core library, CLI, and Chrome extension that patches TeX/LaTeX quirks in Markdown for KaTeX/MathJax renderers (Obsidian, Quarto, GitHub Pages).
+
+[![CI](https://github.com/pakkinlau/TeXPatch/actions/workflows/ci.yml/badge.svg)](https://github.com/pakkinlau/TeXPatch/actions/workflows/ci.yml)
 ![Node](https://img.shields.io/badge/node-%3E%3D20-brightgreen)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6)
+![TypeScript](https://img.shields.io/badge/TypeScript-checked-informational)
 
-Note: replace OWNER/REPO in the CI badge URL with your GitHub repo path.
+**Why TeXPatch?**
+- Keeps code fences/links intact; only touches mathy fragments.
+- Idempotent transforms (safe to run multiple times).
+- Fixes common pain points: `|x|` → `\\lvert x\\rvert`, outer `\\{\\}` escaping, etc.
 
 Overview
 - Monorepo hosting the reusable core library, a clipboard tool, and a Chrome extension.
