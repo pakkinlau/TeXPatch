@@ -3,19 +3,19 @@ SHELL := /bin/bash
 .PHONY: build test ci goldens idempotence profiles cli
 
 build:
-	cd TeXPatch-core && npm i && npm run build
+	cd packages/core && npm i && npm run build
 
 goldens:
-	cd TeXPatch-core && npm run golden
+	cd packages/core && npm run golden
 
 idempotence:
-	cd TeXPatch-core && npm run idempotence
+	cd packages/core && npm run idempotence
 
 profiles:
-	cd TeXPatch-core && npm run profiles
+	cd packages/core && npm run profiles
 
 cli:
-	cd TeXPatch-core && npm run build && node dist/bin/texpatch.js --help
+	cd packages/core && npm run build && node dist/bin/texpatch.js --help
 
 test:
 	bash scripts/test-all.sh

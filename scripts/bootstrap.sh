@@ -8,14 +8,14 @@ echo "Installing workspaces..."
 npm i
 
 echo "Building core..."
-npm -w texpatch-core run build --silent
+npm -w packages/core run build --silent
 
 echo "Building extension..."
 npm -w texpatch-extension run build --silent
 
 echo "Running goldens & idempotence..."
-npm -w texpatch-core run golden --silent
-npm -w texpatch-core run idempotence --silent
+npm -w packages/core run golden --silent
+npm -w packages/core run idempotence --silent
 
 echo "Bootstrap complete."
 

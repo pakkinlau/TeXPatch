@@ -76,10 +76,25 @@ NODE
 
 # Create zip (strip extra file attributes for better reproducibility)
 rm -f "$OUT_ZIP"
-(
-  cd "$WORK"
-  zip -rq -X "$OUT_ZIP" .
-)
+if command -v zip >/dev/null 2>&1; then
+  (
+    cd "$WORK"
+    zip -rq -X "$OUT_ZIP" .
+  )
+else
+  echo "zip not found; using python3 zipfile fallback" >&2
+  python3 - <<'PYZIP' "$WORK" "$OUT_ZIP"
+import os, sys, zipfile
+work = sys.argv[1]
+out = sys.argv[2]
+with zipfile.ZipFile(out, 'w', compression=zipfile.ZIP_DEFLATED) as z:
+    for root, dirs, files in os.walk(work):
+        for f in files:
+            p = os.path.join(root, f)
+            arc = os.path.relpath(p, work)
+            z.write(p, arc)
+print(f"Wrote {out}")
+PYZIP
+fi
 
 echo "Packed $OUT_ZIP (version $EXT_VER)"
-

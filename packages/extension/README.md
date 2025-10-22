@@ -1,7 +1,7 @@
 TeXPatch Extension (MV3)
 
 Summary
-- MV3 Chrome extension that bundles `texpatch-core` and provides a popup to convert the current page selection to clipboard, with an option to replace text in editable fields. Profile selection is persisted via `chrome.storage.sync`.
+- MV3 Chrome extension that bundles `texpatch` and provides a popup to convert the current page selection to clipboard, with an option to replace text in editable fields. Profile selection is persisted via `chrome.storage.sync`.
 
 Build
 ```
@@ -31,4 +31,4 @@ bash scripts/pack-extension.sh
 Produces `texpatch-extension.zip` at repo root with a stamped `manifest.json` and included icons (if present under `packages/extension/assets/icons/`).
 
 Notes
-- This package is private (not published to npm). It consumes the published `texpatch-core` or the local workspace during development.
+- This package is private (not published to npm). It consumes the published `texpatch` or the local workspace during development.

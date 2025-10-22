@@ -6,16 +6,16 @@ ROOT=$(cd "$(dirname "$0")/.." && pwd)
 echo "[1/5] Build core"
 cd "$ROOT"
 npm i --silent
-npm -w texpatch-core run build --silent
+npm --workspace packages/core run build --silent
 
 echo "[2/5] Run goldens"
-npm -w texpatch-core run golden --silent
+npm --workspace packages/core run golden --silent
 
 echo "[3/5] Run idempotence"
-npm -w texpatch-core run idempotence --silent
+npm --workspace packages/core run idempotence --silent
 
 echo "[4/5] Profiles sanity"
-npm -w texpatch-core run profiles --silent
+npm --workspace packages/core run profiles --silent
 
 echo "[5/5] CLI e2e"
 CLI="$ROOT/packages/core/dist/bin/texpatch.js"

@@ -29,15 +29,15 @@ async function main() {
     logLevel: 'info',
   });
 
-  // Sanity: ensure bundled outputs don’t contain bare imports to 'texpatch-core'
+  // Sanity: ensure bundled outputs don’t contain bare imports to 'texpatch'
   const outPopup = readFileSync(join('dist', 'popup.js'), 'utf8');
-  if (/from\s+['"]texpatch-core['"]/.test(outPopup)) {
-    console.error('popup.js still references texpatch-core; bundling failed.');
+  if (/from\s+['"]texpatch['"]/.test(outPopup)) {
+    console.error('popup.js still references texpatch; bundling failed.');
     process.exit(1);
   }
   const outContent = readFileSync(join('dist', 'content.js'), 'utf8');
-  if (/from\s+['"]texpatch-core['"]/.test(outContent)) {
-    console.error('content.js still references texpatch-core; bundling failed.');
+  if (/from\s+['"]texpatch['"]/.test(outContent)) {
+    console.error('content.js still references texpatch; bundling failed.');
     process.exit(1);
   }
 

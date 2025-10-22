@@ -1,6 +1,6 @@
 Release Guide
 
-Core (texpatch-core)
+Core (texpatch)
 - Manual: bump version in `packages/core/package.json`, create a GitHub Release tagged `vX.Y.Z`. The publish workflow will build and publish to npm.
 - Changesets (optional): use `npx changeset` to create entries; configure the Changesets action to open a release PR. Merge and publish via GitHub Release.
 
@@ -14,11 +14,11 @@ Chrome Web Store submission (manual)
    - Description: use `store/description.txt`
    - Privacy policy: link to `PRIVACY.md` in the repo
 2) Build and package
-   - `npm i && npm -w texpatch-core run build && npm -w texpatch-extension run build`
+   - `npm i && npm --workspace packages/core run build && npm -w texpatch-extension run build`
    - `EXT_VERSION=vX.Y.Z bash scripts/pack-extension.sh` (uses this version in manifest)
 3) Upload
    - Upload `texpatch-extension.zip`, add descriptions/screenshots, set privacy link
    - Submit for review
 
 Requirements
-- Repository secret `NPM_TOKEN` with publish access to `texpatch-core`.
+- Repository secret `NPM_TOKEN` with publish access to `texpatch`.

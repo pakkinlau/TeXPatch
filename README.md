@@ -18,13 +18,13 @@ Overview
 
 Packages
 - Core: `packages/core` (TS library + CLI `texpatch`)
-- Extension: `packages/extension` (MV3, private; bundles `texpatch-core`)
+- Extension: `packages/extension` (MV3, private; bundles `texpatch`)
 - Clipboard tool: `packages/clip` (reads → converts → writes clipboard)
 - Tools: `tools/` Python reference (parity) and a stdin→stdout wrapper
 
 Install (local dev)
 - From repo root: `npm i`
-- Build core: `npm -w texpatch-core run build`
+- Build core: `npm --workspace packages/core run build`
 - Build extension: `npm -w texpatch-extension run build`
   - Windows tip: build from a Windows terminal (not WSL) so esbuild targets win32-x64.
 
@@ -54,7 +54,7 @@ Chrome Extension (MV3)
 TypeScript API (ESM)
 ```ts
 // from a consumer project
-import { convert, detect, profiles } from 'texpatch-core';
+import { convert, detect, profiles } from 'texpatch';
 const out = convert(src, { profile: 'katex' }); // 'mathjax' is an alias of 'katex'
 const diag = detect(src); // [{ id:'underscore-in-text', count:3, spans:[...] }]
 ```
@@ -80,9 +80,9 @@ Rules
 - R7 Merge split suffix ('$z$^2' → '$z^2$')
 
 Tests & Quality Gates
-- Goldens: `npm -w texpatch-core run golden`
-- Idempotence: `npm -w texpatch-core run idempotence`
-- Profiles sanity: `npm -w texpatch-core run profiles`
+- Goldens: `npm --workspace packages/core run golden`
+- Idempotence: `npm --workspace packages/core run idempotence`
+- Profiles sanity: `npm --workspace packages/core run profiles`
 - CLI e2e: `bash tests/cli.e2e.sh`
 - Dist reproducibility: `bash scripts/check-dist-clean.sh`
 - All-in-one: `bash scripts/test-all.sh` or `make test`

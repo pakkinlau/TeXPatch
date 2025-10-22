@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>TeXPatch</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="popup.css">
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self'; object-src 'none';">
+  <style>/* fallback if CSS fails to load */ body{background:#0b0b0c;color:#f1f3f5;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}</style>
+  </head>
+<body>
+  <header>TeXPatch</header>
+  <main>
+    <label for="in">Input</label>
+    <textarea id="in" placeholder="Paste Markdown with TeX here..."></textarea>
+    <div class="row">
+      <button id="run">Patch</button>
+      <button id="copy">Copy</button>
+      <span id="status" aria-live="polite"></span>
+    </div>
+    <label for="out">Output</label>
+    <textarea id="out" readonly></textarea>
+  </main>
+  <footer>
+    <a href="https://github.com/pakkinlau/TeXPatch" target="_blank" rel="noreferrer">GitHub</a>
+  </footer>
+  <script src="popup.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling>=1.25.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "texpatch"
+version = "0.1.1"
+description = "Fix TeX/LaTeX quirks in Markdown for KaTeX/MathJax (Python minimal)."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [ { name = "Pak Kin Lau" } ]
+keywords = ["tex","latex","markdown","katex","mathjax","obsidian","quarto","cli"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Topic :: Text Processing",
+]
+
+[project.urls]
+Homepage = "https://github.com/pakkinlau/TeXPatch"
+Source = "https://github.com/pakkinlau/TeXPatch"
+Issues = "https://github.com/pakkinlau/TeXPatch/issues"
+
+[project.scripts]
+texpatch-py = "texpatch.cli:main"
+
+[tool.hatch.build]
+packages = ["src/texpatch"]
+

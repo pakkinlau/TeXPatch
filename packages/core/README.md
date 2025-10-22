@@ -6,12 +6,12 @@ Summary
 
 Install
 ```
-npm i texpatch-core
+npm i texpatch
 ```
 
 API (ESM)
 ```ts
-import { convert, detect, profiles } from 'texpatch-core';
+import { convert, detect, profiles } from 'texpatch';
 const out = convert(src, { profile: 'katex' });
 const diags = detect(src);
 ```

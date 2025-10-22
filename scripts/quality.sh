@@ -13,13 +13,13 @@ echo "Typecheck"
 npm run typecheck --silent
 
 echo "Build core"
-npm -w texpatch-core run build --silent
+npm --workspace packages/core run build --silent
 
 echo "Goldens"
-npm -w texpatch-core run golden --silent
+npm --workspace packages/core run golden --silent
 
 echo "Idempotence"
-npm -w texpatch-core run idempotence --silent
+npm --workspace packages/core run idempotence --silent
 
 echo "Build extension"
 npm -w texpatch-extension run build --silent

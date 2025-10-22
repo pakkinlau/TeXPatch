@@ -27,16 +27,16 @@ jobs:
         run: npm run typecheck
 
       - name: Build core
-        run: npm -w texpatch-core run build
+        run: npm --workspace packages/core run build
 
       - name: Goldens (core)
-        run: npm -w texpatch-core run golden
+        run: npm --workspace packages/core run golden
 
       - name: Idempotence (core)
-        run: npm -w texpatch-core run idempotence
+        run: npm --workspace packages/core run idempotence
 
       - name: Profiles sanity (core)
-        run: npm -w texpatch-core run profiles
+        run: npm --workspace packages/core run profiles
 
       - name: Build extension
         run: npm -w texpatch-extension run build

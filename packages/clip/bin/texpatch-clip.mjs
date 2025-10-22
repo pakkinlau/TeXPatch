@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import clipboard from 'clipboardy';
-import { convert, detect, profiles } from 'texpatch-core';
+import { convert, detect, profiles } from 'texpatch';
 
 function parseArgs(argv) {
   const out = { profile: 'katex', source: 'openai', help: false, version: false, echo: false, json: false };

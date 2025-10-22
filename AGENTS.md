@@ -21,9 +21,9 @@ Repo layout
 
 Build & test (dev)
 - Install: `npm i` (on Windows you may use `npm i --no-bin-links`).
-- Core build: `npm -w texpatch-core run build`.
-- Goldens: `npm -w texpatch-core run golden`.
-- Idempotence: `npm -w texpatch-core run idempotence`.
+- Core build: `npm --workspace packages/core run build`.
+- Goldens: `npm --workspace packages/core run golden`.
+- Idempotence: `npm --workspace packages/core run idempotence`.
 - Extension build (Windows terminal recommended): `npm -w texpatch-extension run build`.
 
 CLI entry points
@@ -48,4 +48,3 @@ CI expectations
 - Goldens and idempotence must pass.
 - Core `dist` should be reproducible (scripts/check-dist-clean.sh).
 - Extension builds via esbuild; build from the host OS (Windows if testing in Chrome on Windows).
-

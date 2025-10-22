@@ -8,7 +8,7 @@ Before you begin
 
 Build the extension
 1) `npm i`
-2) `npm -w texpatch-core run build`
+2) `npm --workspace packages/core run build`
 3) `npm -w texpatch-extension run build`
 4) `EXT_VERSION=v0.1.1 bash scripts/pack-extension.sh` (use your tag)
 

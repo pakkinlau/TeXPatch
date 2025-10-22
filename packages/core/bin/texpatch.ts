@@ -46,7 +46,7 @@ async function main() {
     return;
   }
   if (args.version) {
-    output.write('texpatch-core CLI\n');
+    output.write('texpatch CLI\n');
     return;
   }
   const profile = (args.profile ?? 'katex') as keyof typeof profiles;

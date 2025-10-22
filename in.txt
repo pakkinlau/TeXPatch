@@ -1,0 +1,1 @@
+E^\star = \arg\max*{S\subseteq E}; \mathbb{R}*{\ge 0} 

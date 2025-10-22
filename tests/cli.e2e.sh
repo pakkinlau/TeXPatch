@@ -6,7 +6,7 @@ CLI="$ROOT/packages/core/dist/bin/texpatch.js"
 GOLDEN_DIR="$ROOT/tests/golden"
 
 if [[ ! -f "$CLI" ]]; then
-  echo "Build CLI first: (cd TeXPatch-core && npm run build)" >&2
+  echo "Build CLI first: (cd packages/core && npm run build)" >&2
   exit 2
 fi
 
