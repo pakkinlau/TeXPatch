@@ -16,6 +16,7 @@
     "ext:zip": "bestzip texpatch-extension.zip extension/* extension/icons/*",
     "ext:build": "npm run ext:icons && npm run ext:zip",
     "validate:katex": "node tools/katex-gate.mjs",
+    "validate:mathjax": "node tools/mathjax-gate.mjs",
     "format": "prettier -w .",
     "format:check": "prettier -c .",
     "typecheck": "npm --workspace packages/core run build --silent && npm --workspace packages/extension run build --silent"
@@ -23,6 +24,7 @@
   "devDependencies": {
     "bestzip": "^2.2.1",
     "katex": "^0.17.0",
+    "mathjax": "^4.1.2",
     "prettier": "3.3.3",
     "sharp": "^0.33.5"
   }
