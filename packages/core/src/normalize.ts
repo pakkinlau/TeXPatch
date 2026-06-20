@@ -28,6 +28,10 @@ function escapeUnderscoresInTextish(b: string): string {
   return s;
 }
 
+function collapseStandaloneEqualsLines(b: string): string {
+  return b.replace(/^([ \t]*)={3,}([ \t]*)$/gm, '$1=$2');
+}
+
 // Star-forms and big-delimiter helpers with rule gating
 function applyStarOnly(b: string): string {
   let s = b;
@@ -199,6 +203,7 @@ function escapeLiteralSetsAndIndicators(b: string): string {
 export function fixMathBody(body: string, rules?: RuleConfig): string {
   let b = body;
   b = replaceBoldInsideText(b);
+  b = collapseStandaloneEqualsLines(b);
 
   // Escape #, placeholders, minor spacing fixes similar to reference
   b = b.replace(/(?<!\\)#/g, '\\#');
