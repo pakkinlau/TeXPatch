@@ -30,7 +30,7 @@ export function toDisplayFromLiteralSquareBlocks(text: string): string {
   let inBlk = false;
   let buf: string[] = [];
   for (const ln of lines) {
-    if (!inBlk && /^\s*\[\s*$/.test(ln)) { inBlk = true; buf = []; continue; }
+    if (!inBlk && /^\s*(?:#{1,6}\s*)?\[\s*$/.test(ln)) { inBlk = true; buf = []; continue; }
     if (inBlk && /^\s*\]\s*$/.test(ln)) {
       const body = replaceBoldInsideText(buf.join('\n').trim());
       if (out.length && out[out.length - 1].trim()) out.push('');

@@ -28,8 +28,48 @@ function escapeUnderscoresInTextish(b: string): string {
   return s;
 }
 
-function collapseStandaloneEqualsLines(b: string): string {
+function normalizeRelationSeparators(b: string): string {
   return b.replace(/^([ \t]*)={3,}([ \t]*)$/gm, '$1=$2');
+}
+
+function inferBoxedRelations(b: string): string {
+  const lines = b.split(/\r?\n/);
+  const out: string[] = [];
+  const isLikelyRelationLhs = (line: string) => {
+    const t = line.trim();
+    if (!t || /^\\(?:begin|end|left|right|text)\b/.test(t)) return false;
+    return /\\(?:operatorname|mathcal|mathbf|mathsf|mathrm)\b|\\[A-Za-z]+|[A-Za-z][_^]/.test(t);
+  };
+  for (let i = 0; i < lines.length; i++) {
+    const start = lines[i];
+    if (start.trim() !== '\\boxed{') { out.push(start); continue; }
+
+    const block = [start];
+    let depth = 1;
+    i++;
+    for (; i < lines.length; i++) {
+      const line = lines[i];
+      block.push(line);
+      const opens = line.match(/(?<!\\)\{/g)?.length ?? 0;
+      const closes = line.match(/(?<!\\)\}/g)?.length ?? 0;
+      depth += opens - closes;
+      if (depth <= 0) break;
+    }
+
+    const inner = block.slice(1, -1);
+    const nonEmpty = inner.map((line, index) => ({ line, index })).filter(({ line }) => line.trim());
+    const hasAnyRelation = inner.some(line => /(?:^|[^<>=])=(?:[^<>=]|$)|\\(?:neq|in|notin|le|ge|approx|sim|to|mapsto)\b|[<>]/.test(line));
+    const hasRelationAfterLhs = nonEmpty.length > 1 && /^\s*(?:=|[<>]|\\(?:neq|in|notin|le|ge|approx|sim|to|mapsto)\b)/.test(nonEmpty[1].line);
+
+    if (!hasAnyRelation && inner.some(line => /\\cap\b/.test(line)) && /\\varnothing\b/.test(nonEmpty[nonEmpty.length - 1]?.line ?? '')) {
+      inner.splice(nonEmpty[nonEmpty.length - 1].index, 0, '=');
+    } else if (!hasRelationAfterLhs && nonEmpty.length >= 2 && isLikelyRelationLhs(nonEmpty[0].line)) {
+      inner.splice(nonEmpty[0].index + 1, 0, '=');
+    }
+
+    out.push(block[0], ...inner, block[block.length - 1]);
+  }
+  return out.join('\n');
 }
 
 // Star-forms and big-delimiter helpers with rule gating
@@ -203,13 +243,19 @@ function escapeLiteralSetsAndIndicators(b: string): string {
 export function fixMathBody(body: string, rules?: RuleConfig): string {
   let b = body;
   b = replaceBoldInsideText(b);
-  b = collapseStandaloneEqualsLines(b);
+  b = normalizeRelationSeparators(b);
+  b = inferBoxedRelations(b);
 
   // Escape #, placeholders, minor spacing fixes similar to reference
   b = b.replace(/(?<!\\)#/g, '\\#');
   b = b.replace(/,\s*(\\frac)/g, '\\,\\$1');
   b = b.replace(/(?<=\bi)\s*,\s*(?=(?:\\\(|\\frac))/g, '\\,');
   b = b.replace(/\\{2,}(?=[A-Za-z])/g, '\\');
+  b = b.replace(/\\left\s*\{/g, '\\left\\{');
+  b = b.replace(/\\right\s*\}/g, '\\right\\}');
+  b = b.replace(/(?<!\\)\\\[(\d+(?:\.\d+)?(?:pt|em|ex|mu|mm|cm|in|px))\]/g, '\\\\[$1]');
+  b = b.replace(/\^_(?=\W|$)/g, '^{\\_}');
+  b = b.replace(/(?<!\\)_(?=[,}\s])/g, '\\_');
 
   // Right-delimiter repairs
   if (!rules || rules.R6_rightDelimiterFixes) {
