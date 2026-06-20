@@ -3,6 +3,10 @@ TeXPatch — Patch TeX quirks in Markdown
 Overview
 TeXPatch fixes small TeX quirks in LLM‑generated Markdown so math renders cleanly in KaTeX/MathJax. It converts only the snippet you select — no full‑document rewrites, no network calls.
 
+Open source
+TeXPatch is an open source project. Source code, issue tracking, and release notes are available at:
+https://github.com/pakkinlau/TeXPatch
+
 How it works
 - Select any text on a page
 - Open the TeXPatch popup
@@ -27,5 +31,5 @@ Why TeXPatch
 - Works with KaTeX/MathJax conventions
 
 Support
-Open an issue on the project’s GitHub repository.
-
+Open an issue on the project’s GitHub repository:
+https://github.com/pakkinlau/TeXPatch

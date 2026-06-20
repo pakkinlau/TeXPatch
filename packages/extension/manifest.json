@@ -4,6 +4,7 @@
   "short_name": "TeXPatch",
   "version": "0.0.0",
   "description": "Patch TeX quirks in page selections (uses texpatch).",
+  "homepage_url": "https://github.com/pakkinlau/TeXPatch",
   "background": {
     "service_worker": "dist/background.js"
   },
