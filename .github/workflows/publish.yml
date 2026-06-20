@@ -25,9 +25,9 @@ jobs:
         run: npm i
 
       - name: Build core
-        run: npm -w texpatch-core run build
+        run: npm -w texpatch run build
 
-      - name: Publish texpatch-core to npm
+      - name: Publish texpatch to npm
         working-directory: packages/core
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
